@@ -1,0 +1,16 @@
+{
+    "name": "mananatena/tranokala_fiangonana",
+    "description": "Web application for church",
+    "authors": [
+        {
+            "name": "manaRand",
+            "email": "randriantsoa.manantena@gmail.com"
+        }
+    ],
+    "autoloader": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}

@@ -1,0 +1,29 @@
+@charset 'utf-8';
+
+#toriteny-titre {
+    background: linear-gradient(to right,#261773, #0c023f);
+}
+
+#toriteny-intro {
+    background: linear-gradient(to right,#004a57, #005764);
+}
+
+#vaovao {
+    background: linear-gradient(to right, #e23a24, rgb(167, 42, 25));
+}
+
+#tatitra {
+    background: linear-gradient(to right, #e4882b, #c06204);
+}
+
+#tetiandro {
+    background: linear-gradient(to right, #048399, #00313a);
+}
+
+#sampana {
+    background: linear-gradient(to right, #000000, #1b0e00);
+}
+
+#fotoampivavahana {
+    background: linear-gradient(to right,#261773, #0c023f);
+}
