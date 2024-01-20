@@ -2,25 +2,26 @@
 
 use App\Database\Querries\UserQuerries;
 
-require_once dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+// require_once dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+
 
 if (isset($_SESSION['user-id'])) {
     if (in_array(intval($_SESSION['user-id']), UserQuerries::getUsersIds())) {
-        header('Location:/mpikambana/fandraisana');
+        header('Location:/mpikambana-fandraisana');
     } else {
         unset($_SESSION['user-id']);
         header('Location:/mpikambana');
     }
 }
 
-if (isset($_POST['email']) && isset($_POST['password']) || isset($_POST['submit'])) {
+if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = trim(htmlentities($_POST['email']));
     $password = trim(htmlentities($_POST['password']));
 
     if (!empty($email) && !empty($password)) {
         $userResult = [];
         try {
-            
+
             $userResult = UserQuerries::getUserByEmail($email);
         } catch (Throwable $t) {
             echo '<pre>';
@@ -28,9 +29,12 @@ if (isset($_POST['email']) && isset($_POST['password']) || isset($_POST['submit'
             echo '</pre>';
         }
         $user = (count($userResult)) ? $userResult : null;
-        if (!is_null($user) && count($userResult) === 1) {
+        
+        if (count($userResult) === 1) {
+            
             if ($user[0]->verifyPassword($password)) {
                 $_SESSION['user-id'] = $user[0]->getUser_id();
+                header('Location:/mpikambana');
             } else {
                 $message['password'] = "Diso ny teny miafina nampidirinao.";
             }
@@ -39,7 +43,7 @@ if (isset($_POST['email']) && isset($_POST['password']) || isset($_POST['submit'
         }
     } else if (empty($password)) {
         $message['password'] = "Tsy maintsy fenoina ny teny miafina nampidirinao.";
-    } else if (empty ($email)) {
+    } else if (empty($email)) {
         $message['email'] = "Tsy maintsy fenoina ny email nampidirinao.";
     } else {
         $message['both'] = "Tsy maintsy fenoina ny email sy ny teny miafina vao afaka ny iditra ianao.";

@@ -7,7 +7,7 @@ use PDO;
 use App\Database\DatabaseManager;
 use App\Models\User;
 
-require_once dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+// require_once dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 class UserQuerries
 {
@@ -26,7 +26,7 @@ class UserQuerries
         $query->execute([
             "email" => htmlentities($email)
         ]);
-        
+
         return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\User");
     }
 
@@ -52,6 +52,16 @@ class UserQuerries
     public static function getUsersIds(): array
     {
         $databaseManager = new DatabaseManager();
-        return $databaseManager->getPDO()->query("SELECT user_id FROM " . self::$tableName)->fetchAll(PDO::FETCH_BOUND);
+        return $databaseManager->getPDO()->query("SELECT user_id FROM " . self::$tableName)->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public static function getUserById(int $id) : array
+    {
+        $databaseManager = new DatabaseManager();
+        $query = $databaseManager->getPDO()->prepare("SELECT * FROM " . self::$tableName . " WHERE user_id = :id");
+        $query->execute([
+            "id" => $id
+        ]);
+        return $query->fetchAll(PDO::FETCH_CLASS, "App\Models\User");
     }
 }

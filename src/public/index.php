@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-
+// require_once dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+session_start();
 $routes = require_once 'routes.php';
 function matchDynamicURL (string $uri, $routes)
 {

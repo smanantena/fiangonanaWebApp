@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="mg">
 
@@ -11,6 +8,9 @@ session_start();
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/globals.css">
     <?php
+
+use App\Database\Querries\UserQuerries;
+
     if (isset($pageStyle) && !empty($pageStyle)) {
         echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/{$pageStyle}\">";
     }
@@ -52,7 +52,7 @@ session_start();
                 <li><a href="http://<?= $_SERVER['SERVER_NAME'] ?>/fanohanana" class="button primary fit">Fanohanana</a></li>
                 <?php
                 if (isset($_SESSION['user-id'])) {
-                    if ($_SESSION['user-id'] === 'connected') {
+                    if (in_array(intval($_SESSION['user-id']), UserQuerries::getUsersIds())) {
                         echo "<li><a href=\"http://{$_SERVER['SERVER_NAME']}/mivoaka\" class=\"button fit\">Miverina ho mpitsidika</a></li>";
                     }
                 } else {

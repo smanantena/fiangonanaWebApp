@@ -26,7 +26,8 @@ $routesStatics = [
     '/fiangonanaSosialy' => '../views/visitorsViews/fiangonanaSosialy.php',
     '/volaFiangonana' => '../views/visitorsViews/volaFiangonana.php',
     '/mpikambana' => '../views/users/login.php',
-    '/mpikambana//fandraisana' => '../views/users/homepage.php',
+    '/mivoaka' => '../views/users/logout.php',
+    '/mpikambana-fandraisana' => '../views/users/homepage.php',
 ];
 
 $routesDynamics = [

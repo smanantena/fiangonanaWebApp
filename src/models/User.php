@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 class User
@@ -7,16 +6,20 @@ class User
     private int $user_id;
     private string $user_email;
     private string $user_password;
-    private string $user_role;
+    private string|int $user_role;
+    private string $user_name;
 
-    public function __construct(int $role)
+    public function __construct()
     {
-        $user_role_array = [
-            "1" => "admin",
-            "2" => "user",
-            "3" => "moderator",
-        ];
-        $this->user_role = $user_role_array[strval($role)];
+        if (intval($this->user_role)) {
+
+            $user_role_array = [
+                "1" => "admin",
+                "2" => "user",
+                "3" => "moderator",
+            ];
+            $this->user_role = $user_role_array[strval($this->user_role)];
+        }
     }
 
     public function verifyPassword (string $password) : bool
@@ -101,6 +104,17 @@ class User
     {
         $this->user_role = $user_role;
 
+        return $this;
+    }
+
+    public function getUser_name()
+    {
+        return $this->user_name;
+    }
+
+    public function setUser_name($user_name)
+    {
+        $this->user_name = $user_name;
         return $this;
     }
 }

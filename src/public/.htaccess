@@ -9,4 +9,4 @@ RewriteRule ^.*/$ router.php
 ErrorDocument 500 http://tranokala.fiangonana.mg/errors
 ErrorDocument 401 http://tranokala.fiangonana.mg/errors
 ErrorDocument 404 http://tranokala.fiangonana.mg/errors
-ErrorDocument 403 http://tranokala.fiangonana.mg/errors
+ErrorDocument 403 http://tranokala.fiangonana.mg/errors 
